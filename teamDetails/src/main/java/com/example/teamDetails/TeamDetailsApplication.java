@@ -11,8 +11,7 @@ public class TeamDetailsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TeamDetailsApplication.class, args);
 	}
-	public @interface LoadBalanced{}
-	@LoadBalanced
+
 	@Bean
 	public RestTemplate restTemplate(){
 		return new RestTemplate();

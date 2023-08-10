@@ -24,7 +24,7 @@ public class PlayerServiceImpl implements PlayerService{
     @Override
     public List<Player> getPlayerById(long teamId) {
 //        return list.stream().filter(player->player.getTeamId()==(teamId)).collect(Collectors.toList());
-        return playerRepository.findById(teamId).stream().toList();
+        return playerRepository.findByTeamId(teamId);
     }
 
     @Override
