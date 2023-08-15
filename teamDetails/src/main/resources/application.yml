@@ -31,6 +31,14 @@ resilience4j:
         waitDuration: 2s
         maxAttempts: 3
 
+  rate-limiter:
+    instances:
+      TeamServiceLimiter:
+        timeoutDuration: 0s
+        limitForPeriod: 2
+        limitRefreshPeriod: 4s
+
+
 
 
 
