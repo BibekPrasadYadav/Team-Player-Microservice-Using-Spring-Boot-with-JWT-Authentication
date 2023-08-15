@@ -11,6 +11,8 @@ spring:
           uri: lb://TEAM-SERVICE
           predicates:
             - Path=/team/**
+
+
         - id: PLAYER-SERVICE
           uri: lb://PLAYER-SERVICE
           predicates:
