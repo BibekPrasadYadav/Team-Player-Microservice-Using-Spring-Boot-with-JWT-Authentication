@@ -1,3 +1,17 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/teamdb?autoReconnect=true&useSSL=false
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: Team-Service
+server:
+  port: 9000
+
 resilience4j:
   circuit-breaker:
     instances:
@@ -11,3 +25,12 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+  retry:
+    instances:
+      PlayerServiceFallback:
+        waitDuration: 2s
+        maxAttempts: 3
+
+
+
+

@@ -5,6 +5,7 @@ import com.example.teamDetails.entities.Team;
 import com.example.teamDetails.repository.TeamRepository;
 import com.example.teamDetails.service.TeamService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,11 @@ public class TeamController {
 
         return teamService.getAllTeam();
     }
+
+    int retryCount=1;
     @GetMapping("/{teamId}")
-    @CircuitBreaker(name = "PlayerServiceBreaker", fallbackMethod = "playerServiceFallback")
+//    @CircuitBreaker(name = "PlayerServiceBreaker", fallbackMethod = "playerServiceFallback")
+    @Retry(name="PlayerServiceBreaker", fallbackMethod = "playerServiceFallback")
     public Team getTeamById(@PathVariable("teamId") long teamId){
 //        Team team= teamService.getTeamById(teamId);
 //
@@ -46,6 +50,8 @@ public class TeamController {
 //        team.setPlayers(players);
 //        return team;
 
+        logger.info("Retry Count {}",retryCount);
+        retryCount++;
         Team team=teamRepository.findById(teamId).orElse(null);
         List players=restTemplate.getForObject("http://localhost:9001/player/" + team.getTeamId(),List.class);
         team.setPlayers(players);
