@@ -10,6 +10,7 @@
         <module name="api-gateway" />
         <module name="playerDetails" />
         <module name="e_server" />
+        <module name="identity-service" />
         <module name="teamDetails" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="e_server" options="-parameters" />
+      <module name="identity-service" options="-parameters" />
       <module name="playerDetails" options="-parameters" />
       <module name="teamDetails" options="-parameters" />
     </option>

@@ -17,3 +17,8 @@ spring:
           uri: lb://PLAYER-SERVICE
           predicates:
             - Path=/player/**
+
+        - id: IDENTITY-SERVICE
+          uri: lb://IDENTITY-SERVICE
+          predicates:
+            - Path=/auth/**
