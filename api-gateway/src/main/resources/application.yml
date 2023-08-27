@@ -11,12 +11,15 @@ spring:
           uri: lb://TEAM-SERVICE
           predicates:
             - Path=/team/**
-
+          filters:
+            - AuthenticationFilter
 
         - id: PLAYER-SERVICE
           uri: lb://PLAYER-SERVICE
           predicates:
             - Path=/player/**
+          filters:
+            - AuthenticationFilter
 
         - id: IDENTITY-SERVICE
           uri: lb://IDENTITY-SERVICE
